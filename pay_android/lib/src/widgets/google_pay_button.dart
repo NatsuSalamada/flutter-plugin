@@ -91,10 +91,13 @@ class RawGooglePayButton extends StatelessWidget {
   /// transaction.
   final GooglePayButtonType type;
 
+  final Widget? loadingWidget;
+
   /// Creates a Google Pay button widget with the parameters specified.
   const RawGooglePayButton({
     Key? key,
     this.onPressed,
+    this.loadingWidget,
     this.type = GooglePayButtonType.pay,
   }) : super(key: key);
 
@@ -132,7 +135,7 @@ class RawGooglePayButton extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: SvgPicture.asset(
+      child: loadingWidget ?? SvgPicture.asset(
         _assetPath(context),
         package: 'pay_android',
         semanticsLabel: 'Buy with Google Pay text',
